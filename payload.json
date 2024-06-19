@@ -6,24 +6,26 @@
         "4 phòng ngủ",
         "homestay",
         "3wc",
-        "3 nhà vệ sinh"
+        "3 nhà vệ sinh",
+        "cho thuê",
+        "thuê"
     ],
-    "data": [
+    "browsers": [
         {
             "browsername": "61558408043102",
-            "url": ""
+            "url": "https://www.facebook.com/groups/feed/"
         },
         {
             "browsername": "61558466215098",
-            "url": ""
+            "url": "https://www.facebook.com/groups/feed/"
         },
         {
             "browsername": "61555892307613",
-            "url": ""
+            "url": "https://www.facebook.com/groups/feed/"
         },
         {
             "browsername": "61556079517641",
-            "url": ""
+            "url": "https://www.facebook.com/groups/feed/"
         }
     ]
 }

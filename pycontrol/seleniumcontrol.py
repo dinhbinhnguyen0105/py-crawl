@@ -29,11 +29,9 @@ class SeleniumControl(QObject):
                 print('Error')
                 self.finished.emit()
         elif sys.platform == 'darwin':
-            self.dir_driver = os.path.join(os.path.dirname(__file__), 'chromedriver')
+            self.path_chromedriver = os.path.join(os.path.dirname(__file__), os.path.pardir, 'driver', 'chromedriver')
             self.dir_chromeapp = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'        
-            self.path_chromedriver = os.path.join(os.path.dirname(__file__), os.path.pardir, 'bin', 'driver', 'chromedriver')
-            if not os.path.exists(self.dir_driver) or not os.path.exists(self.path_chromedriver):
-                self.finished.emit()
+            
 
         self.browsername = browsername
         self.dir_browser = os.path.join(os.path.dirname(__file__), os.path.pardir, 'bin', 'browsers', browsername)
@@ -51,7 +49,7 @@ class SeleniumControl(QObject):
         options.add_experimental_option('debuggerAddress', f'localhost:{self.port}')
         options.add_argument('disable-infobars')
         options.add_argument('--disable-notifications')
-        service = Service(self.dir_driver)
+        service = Service(self.path_chromedriver)
         os.popen(f'"{self.dir_chromeapp}" --remote-debugging-port={self.port} --user-data-dir="{self.dir_browser}"')
         try:
             return webdriver.Chrome(service=service, options=options)
