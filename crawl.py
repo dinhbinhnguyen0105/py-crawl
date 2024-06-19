@@ -91,10 +91,10 @@ class Crawl(SeleniumControl):
                         urlInfoElm = urlInfoElm[0].get_attribute('href')
                         itemInfos['url'].append(urlInfoElm)
                     # else: continue
-                else:
-                    itemInfos['url'] = None
-                    self.driver.execute_script('arguments[0].remove();', postElm)
-                    continue
+            else:
+                itemInfos['url'] = None
+                self.driver.execute_script('arguments[0].remove();', postElm)
+                continue
 
             postDesElm = self.driver.find_elements(By.ID, attributes[1])
             if len(postDesElm) > 0:
@@ -111,6 +111,7 @@ class Crawl(SeleniumControl):
                 for keyword in keywords:
                     if keyword in postDesElm.text:
                         hasKeyword = True
+                        break
                 if hasKeyword == True:
                     itemInfos['description'] = postDesElm.text
                 else:
@@ -147,12 +148,11 @@ class Crawl(SeleniumControl):
 
             results.append(itemInfos)
             count += 1
-            print(count)
         print(results)
             
 if __name__ == '__main__':
-    crawl = Crawl('/Users/ndb/Workspace/mymanager/bin/browsers/61556079517641')
+    crawl = Crawl('/Users/dinhbinh/Workspace/mymanager/bin/browsers/100090154285287')
     # crawl.crawlControl('https://www.facebook.com/groups/feed/', [])
-    crawl.crawlControl2('https://www.facebook.com/groups/feed/', ['nhà', 'khách sạn'], 1)
-    # crawl.crawlControl2('https://www.facebook.com/groups/feed/', [' '], 1)
+    crawl.crawlControl2('https://www.facebook.com/groups/feed/', ['nhà', 'khách sạn', 'thuê'], 1)
+    # crawl.crawlControl2('https://www.facebook.com/groups/feed/', [''], 1)
     
