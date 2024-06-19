@@ -2,7 +2,7 @@ import json, os, datetime
 from pycontrol.crawl import Crawl
 
 PAYLOAD_PATH = os.path.join(os.path.dirname(__file__), 'payload.json')
-BROWSERS_DIR = '/Users/ndb/Workspace/mymanager/bin/browsers/'
+BROWSERS_DIR = '/Users/dinhbinh/Workspace/mymanager/bin/browsers/'
 
 def main():
     with open(PAYLOAD_PATH, 'r') as f:
