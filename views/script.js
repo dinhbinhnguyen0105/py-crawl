@@ -36,40 +36,43 @@ function App({ props }) {
 }
 
 function ListItem({ props }) {
-    return Object.values(props).map((item, index) => {
-        return (
-            <div className='list-item' key={index}>
-                <table>
-                    <tr>
-                        {
-                            item.map((header, headerIndex) => {
-                                console.log(header, headerIndex);
-                                return <th key={headerIndex}>{header}</th>
-                            })
-                        }
-                    </tr>
-                </table>
-            </div>
-        )
-    })
+
     return (
         <div className='list-item'>
             {
-                Object.values(props).map((item, index) => {
-                    return (
-                        <div className>
-
-                        </div>
-                    )
-                    // return item.map(value => {
-                    //     return (
-                    //         <div>
-
-                    //         </div>
-                    //     )
-                    // })
+                Object.values(props).map((browser, browserIndex) => {
+                    return <Table props={browser} key ={browserIndex} />
                 })
             }
+        </div>
+    )
+}
+
+function Table({props}) {
+    return (
+        <div className='table'>
+            <div className='table-header'>
+                <div className='header-no no'>No</div>
+                <div className='header-url url'>Link</div>
+                <div className='header-description description'>Description</div>
+                <div className='header-comment comment'>Comment</div>
+                <div className='header-images images'>Images</div>
+            </div>
+            <div className='table-body'>
+                {
+                    props.map((row, rowIndex) => {
+                        return (
+                            <div className='table-row' key={rowIndex}>
+                                <div className='cell no'>{row.no}</div>
+                                <div className='cell url'>{row.url}</div>
+                                <div className='cell description'>{row.description}</div>
+                                <div className='cell comment'>{row.comment}</div>
+                                <div className='cell images'>{row.images}</div>
+                            </div>
+                        )
+                    })
+                }
+            </div>
         </div>
     )
 }

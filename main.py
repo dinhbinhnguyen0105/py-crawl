@@ -2,7 +2,7 @@ import json, os, datetime
 from pycontrol.crawl import Crawl
 
 PAYLOAD_PATH = os.path.join(os.path.dirname(__file__), 'payload.json')
-BROWSERS_DIR = '/Users/dinhbinh/Workspace/mymanager/bin/browsers/'
+BROWSERS_DIR = '/Users/ndb/Workspace/mymanager/bin/browsers/'
 
 def main():
     with open(PAYLOAD_PATH, 'r') as f:
@@ -11,7 +11,7 @@ def main():
     for browser in payload['browsers']:
         browserDir = os.path.join(os.path.join(BROWSERS_DIR, browser['browsername']))
         crawl = Crawl(browserDir)
-        data = crawl.crawlControl(browser['url'], payload['keywords'], 1)
+        data = crawl.crawlControl(browser['url'], payload['keywords'], 3)
 
         groupUID = browser['url'].split('/')[-2]
         now = datetime.datetime.now()

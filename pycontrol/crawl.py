@@ -68,14 +68,25 @@ class Crawl(SeleniumControl):
                     if keyword in postDesElm.text:
                         hasKeyword = True
                         break
-                if hasKeyword == True:
-                    itemInfos['description'] = postDesElm.text
-                else:
-                    if postCommentNum < 5:
-                        self.driver.execute_script('arguments[0].remove();', postElm)
-                        continue
+                    
+                itemInfos['description'] = postDesElm.text
+
+                if hasKeyword == False and postCommentNum < 5: 
+                    self.driver.execute_script('arguments[0].remove();', postElm)
+                    continue
+
+                # if hasKeyword == True:
+                #     itemInfos['description'] = postDesElm.text
+                # elif postCommentNum < 5:
+                #     self.driver.execute_script('arguments[0].remove();', postElm)
+                #         continue
+                # else:
+                #     itemInfos['description'] = 
+                #     if postCommentNum < 5:
+                #         self.driver.execute_script('arguments[0].remove();', postElm)
+                #         continue
             else:
-                itemInfos['desription'] = None
+                itemInfos['description'] = None
                 self.driver.execute_script('arguments[0].remove();', postElm)
                 continue
 

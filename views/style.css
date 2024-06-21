@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 14px;
+}
+
+.warpper {
+    margin:  16px;
+}
+
+.list-item .table {
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 1px 1px 4px 4px rgb(200, 200, 200);
+}
+
+.table .table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.table .table-header div {
+    display: inline-block;
+}
