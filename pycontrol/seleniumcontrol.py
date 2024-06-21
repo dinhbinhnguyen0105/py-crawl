@@ -17,7 +17,7 @@ sys.path.append(dir_utils)
 class SeleniumControl(QObject):
     finished = pyqtSignal()
     event_error = pyqtSignal(str)
-    def __init__(self, browsername, parent=None):
+    def __init__(self, browsername, port, parent=None):
         super().__init__(parent)
         if sys.platform == 'linux' or sys.platform == 'linux2':
             pass
@@ -37,12 +37,15 @@ class SeleniumControl(QObject):
         self.dir_browser = os.path.join(os.path.dirname(__file__), os.path.pardir, 'bin', 'browsers', browsername)
         if os.path.exists(self.dir_browser) is not True:
             os.mkdir(self.dir_browser)
-        self.port = 9923
-        while True:
-            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-                if s.connect_ex(('localhost', self.port)) == 0:
-                    self.port += 1
-                else: break
+        
+        self.port = port
+        # self.port = 9923
+        # while True:
+        #     sleep(1)
+        #     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        #         if s.connect_ex(('localhost', self.port)) == 0:
+        #             self.port += 1
+        #         else: break
 
     def initDriver(self):
         options = Options()
@@ -51,9 +54,11 @@ class SeleniumControl(QObject):
         options.add_argument('--disable-notifications')
         service = Service(self.path_chromedriver)
         os.popen(f'"{self.dir_chromeapp}" --remote-debugging-port={self.port} --user-data-dir="{self.dir_browser}"')
+        print(self.port)
         try:
             return webdriver.Chrome(service=service, options=options)
         except WebDriverException as e:
+            print(e)
             return False
 
     def quitDriver(self):

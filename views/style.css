@@ -19,6 +19,8 @@ html {
     padding: 20px;
     margin: 20px;
     box-shadow: 1px 1px 4px 4px rgb(200, 200, 200);
+    border-radius: 12px;
+    /* max-width: 1000px; */
 }
 
 .table .table-header {
@@ -26,8 +28,36 @@ html {
     align-items: center;
     justify-content: space-between;
     text-align: center;
+    padding: 12px 0;
+    font-weight: 600;
+    border-bottom: 2px solid rgb(150, 150, 150);
 }
 
 .table .table-header div {
     display: inline-block;
+    width: 25%;
+}
+
+.table .table-body .table-row {
+    padding: 8px 0;
+    border-bottom: 1px solid rgb(150, 150, 150);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-body .table-row .cell {
+    display: inline-block;
+    width: 25%;
+    overflow: hidden;
+    text-align: center;
+}
+
+.table-body .table-row img {
+    display: inline-block;
+    overflow: hidden;
+    width: 100px;
+    border-radius: 8px;
+    margin: 4px;
+    border: 1px solid rgb(150, 150, 150);
 }

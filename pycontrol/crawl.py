@@ -65,7 +65,7 @@ class Crawl(SeleniumControl):
                         continue
                 hasKeyword = False
                 for keyword in keywords:
-                    if keyword in postDesElm.text:
+                    if keyword.lower() in postDesElm.text.lower():
                         hasKeyword = True
                         break
                     

@@ -53,7 +53,7 @@ function Table({props}) {
         <div className='table'>
             <div className='table-header'>
                 <div className='header-no no'>No</div>
-                <div className='header-url url'>Link</div>
+                {/* <div className='header-url url'>Link</div> */}
                 <div className='header-description description'>Description</div>
                 <div className='header-comment comment'>Comment</div>
                 <div className='header-images images'>Images</div>
@@ -61,13 +61,29 @@ function Table({props}) {
             <div className='table-body'>
                 {
                     props.map((row, rowIndex) => {
+                        let postUrl = '';
+                        for(let url of row.url) {
+                            if(url.includes('multi_permalinks=')) postUrl =url;
+                        }
+
                         return (
                             <div className='table-row' key={rowIndex}>
                                 <div className='cell no'>{row.no}</div>
-                                <div className='cell url'>{row.url}</div>
-                                <div className='cell description'>{row.description}</div>
+                                <div className='cell description'>
+                                    <a href={postUrl}>
+                                        {row.description}
+                                    </a>
+                                </div>
                                 <div className='cell comment'>{row.comment}</div>
-                                <div className='cell images'>{row.images}</div>
+                                <div className='cell images'>
+                                    {
+                                        row.images.map((image, imageIndex) => {
+                                            return (
+                                                <img src={image} key={imageIndex} />
+                                            )
+                                        })
+                                    }
+                                </div>
                             </div>
                         )
                     })
